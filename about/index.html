@@ -14,6 +14,131 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+    <style>
+      body[data-page="about"] {
+        background: var(--bg);
+        color: var(--fg);
+      }
+
+      .about-hero {
+        max-width: 54rem;
+        margin: 0 auto;
+        padding: 6rem 3rem 4rem;
+        text-align: center;
+      }
+
+      .about-hero__image {
+        width: 8rem;
+        height: 8rem;
+        margin: 0 auto 2rem;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid rgba(236, 231, 220, 0.2);
+      }
+
+      .about-hero__title {
+        margin: 0 0 0.5rem;
+        font-family: "Instrument Serif", serif;
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+
+      .about-hero__subtitle {
+        margin: 0 0 1.5rem;
+        color: var(--muted);
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      .about-hero__lead {
+        max-width: 40rem;
+        margin: 0 auto;
+        color: var(--fg);
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+
+      .about-section {
+        max-width: 54rem;
+        margin: 0 auto;
+        padding: 4rem 3rem;
+        border-top: 1px solid rgba(236, 231, 220, 0.12);
+      }
+
+      .about-section h2 {
+        margin: 0 0 2rem;
+        font-family: "Instrument Serif", serif;
+        font-size: 1.3rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .about-boxes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        gap: 1.5rem;
+      }
+
+      .about-box {
+        padding: 1.5rem;
+        border: 1px solid rgba(236, 231, 220, 0.12);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.01);
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .about-box:hover {
+        border-color: rgba(236, 231, 220, 0.24);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .about-box h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+      }
+
+      .about-box p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .about-links {
+        max-width: 54rem;
+        margin: 0 auto;
+        padding: 4rem 3rem;
+        border-top: 1px solid rgba(236, 231, 220, 0.12);
+      }
+
+      .about-links h2 {
+        margin: 0 0 1.5rem;
+        font-family: "Instrument Serif", serif;
+        font-size: 1.3rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .about-links a {
+        display: inline-block;
+        margin-right: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: var(--fg);
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+        transition: color 0.2s ease;
+      }
+
+      .about-links a:hover {
+        color: var(--gold);
+      }
+    </style>
     <script type="module" crossorigin src="../assets/main-i-05z0PQ.js"></script>
     <link rel="stylesheet" crossorigin href="../assets/main-Wg6qmwwQ.css">
   </head>
@@ -32,29 +157,53 @@
       </nav>
     </header>
 
-    <main class="page">
-      <p class="eyebrow reveal">01 — about</p>
-      <h1 class="section-title">
-        <span class="line-mask"><span>behind</span></span>
-        <span class="line-mask"><span>the screen</span></span>
-      </h1>
-      <p class="page__lead reveal">
-        Hello — I'm Esukunzu. I build functional, quiet, and considered spaces
-        for the web.
-      </p>
-      <p class="about__text" data-scrub>
-        I really love editing, making websites, and doing photograhy, videography.
-      </p>
-      <div class="about__more">
-        <p class="reveal">
-          I started from nothing, just a kid with a laptop back then but now? I’m an aspiring upcoming multimedia art student and web developer based in the Philippines. I’m still learning, but I want to make things that are quiet, functional, and considered.
+    <main>
+      <section class="about-hero">
+        <div class="about-hero__image" style="background: linear-gradient(135deg, rgba(196, 165, 116, 0.2), rgba(141, 136, 124, 0.2));"></div>
+        <h1 class="about-hero__title">Esukunzu</h1>
+        <p class="about-hero__subtitle">Multimedia Art Student & Web Developer</p>
+        <p class="about-hero__lead">
+          I build functional, quiet, and considered spaces for the web. Curiosity turned into craft, and each small experiment keeps becoming a more deliberate way of making.
         </p>
-        <p class="reveal">
-          I’m not a designer, but I care about craft. I’m not a writer, but I care about clarity. I’m not an animator, but I care about motion. I’m not a musician, but I care about rhythm. I’m not a philosopher, but I care about attention.
-        </p>
-      </div>
-    </main>
+      </section>
 
+      <section class="about-section">
+        <h2>Skills & Interests</h2>
+        <div class="about-boxes">
+          <div class="about-box reveal">
+            <h3>Web Development</h3>
+            <p>HTML, CSS, JavaScript, Vite. Building fast, clean, and intentional digital experiences.</p>
+          </div>
+          <div class="about-box reveal">
+            <h3>Design & Motion</h3>
+            <p>UI/UX, typography, timing, and animation. Motion that feels purposeful, not flashy.</p>
+          </div>
+          <div class="about-box reveal">
+            <h3>Creative Coding</h3>
+            <p>GSAP, three.js, WebGL. Blending functionality with interactive storytelling.</p>
+          </div>
+          <div class="about-box reveal">
+            <h3>Photography & Video</h3>
+            <p>Visual storytelling and content creation. Finding meaning in light and composition.</p>
+          </div>
+          <div class="about-box reveal">
+            <h3>Editing & Curation</h3>
+            <p>Attention to detail. The craft of making things clear and intentional.</p>
+          </div>
+          <div class="about-box reveal">
+            <h3>Based in Philippines</h3>
+            <p>An aspiring multimedia art student building things online and learning constantly.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-links">
+        <h2>elsewhere</h2>
+        <a href="../journey/">Journey</a>
+        <a href="../contact/">Contact</a>
+        <a href="../">Home</a>
+      </section>
+    
     <footer class="footer">
       <p>© 2026 esukunzu</p>
       <p>about // 2026</p>

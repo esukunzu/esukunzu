@@ -14,6 +14,33 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
+    <style>
+      .contact-stack {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0;
+        width: min(40rem, 100%);
+      }
+
+      .contact-stack a {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.2rem;
+        color: #ece7dc;
+      }
+
+      .contact-stack a + a::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.9rem;
+        bottom: 0.9rem;
+        width: 1px;
+        background: rgba(236, 231, 220, 0.14);
+      }
+    </style>
     <script type="module" crossorigin src="../assets/main-i-05z0PQ.js"></script>
     <link rel="stylesheet" crossorigin href="../assets/main-Wg6qmwwQ.css">
   </head>
@@ -33,14 +60,14 @@
     </header>
 
     <main class="page page--contact">
-      <p class="eyebrow reveal">04 — contact</p>
+      <p class="eyebrow reveal">contact me</p>
       <h1 class="section-title">
         <span class="line-mask"><span>let's</span></span>
         <span class="line-mask"><span>talk</span></span>
       </h1>
       <div class="contact-stack reveal">
-        <a href="mailto:hello@esukunzu.com">hello@esukunzu.com</a>
-        <a href="https://instagram.com/esukunzu" target="_blank" rel="noreferrer">instagram</a>
+        <a href="mailto:esukunzuesukunzu@gmail.com">esukunzuesukunzu@gmail.com</a>
+        <a href="https://discord.gg/esukunzu" target="_blank" rel="noreferrer">discord</a>
         <a href="https://github.com/esukunzu" target="_blank" rel="noreferrer">github</a>
       </div>
     </main>
