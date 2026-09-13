@@ -185,16 +185,19 @@
     </header>
 
     <main class="journey-shell">
-      <p class="journey-kicker">memoir &amp; evolution</p>
-      <h1 class="journey-title">The Unfiltered<br />Path.</h1>
+      <p class="journey-kicker reveal">memoir &amp; evolution</p>
+      <h1 class="journey-title">
+        <span class="line-mask"><span>The Unfiltered</span></span>
+        <span class="line-mask"><span>Path.</span></span>
+      </h1>
 
-      <p class="journey-lead">
+      <p class="journey-lead reveal">
         How curiosity turned into craft, and how each small experiment kept becoming
         a more deliberate way of making.
       </p>
 
       <div class="journey-grid">
-        <article class="journey-card">
+        <article class="journey-card reveal">
           <span class="journey-meta">2020 // the spark</span>
           <h2>The first click.</h2>
           <p>
@@ -203,7 +206,7 @@
           </p>
         </article>
 
-        <article class="journey-card">
+        <article class="journey-card reveal">
           <span class="journey-meta">2021 // tutorial hell</span>
           <h2>Watching more than building.</h2>
           <p>
@@ -212,7 +215,7 @@
           </p>
         </article>
 
-        <article class="journey-card">
+        <article class="journey-card reveal">
           <span class="journey-meta">2023 // first real code</span>
           <h2>Something messy, but mine.</h2>
           <p>
@@ -221,7 +224,7 @@
           </p>
         </article>
 
-        <article class="journey-card">
+        <article class="journey-card reveal">
           <span class="journey-meta">2025 // discovery</span>
           <h2>Design and rhythm.</h2>
           <p>
@@ -231,7 +234,7 @@
         </article>
       </div>
 
-      <div class="journey-quote">
+      <div class="journey-quote reveal">
         <blockquote>
           “You can’t connect the dots looking forward; you can only connect them looking backwards.”
         </blockquote>
@@ -239,7 +242,7 @@
       </div>
 
       <div class="journey-grid">
-        <article class="journey-card">
+        <article class="journey-card reveal">
           <span class="journey-meta">present // the path</span>
           <h2>Still learning, still building.</h2>
           <p>
@@ -250,7 +253,7 @@
         </article>
       </div>
 
-      <div class="journey-links">
+      <div class="journey-links reveal">
         <a href="../about/">about</a>
         <a href="../contact/">contact</a>
         <a href="../">home</a>
@@ -261,5 +264,85 @@
       <p>© 2026 esukunzu</p>
       <p>journey // 2026</p>
     </footer>
+
+    <script>
+      const { gsap, ScrollTrigger } = window;
+
+      if (gsap && ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(".progress", {
+          width: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.documentElement,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.3,
+          },
+        });
+
+        gsap.utils.toArray(".line-mask span").forEach((line) => {
+          gsap.from(line, {
+            yPercent: 110,
+            duration: 1.05,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: line.parentElement,
+              start: "top 90%",
+            },
+          });
+        });
+
+        gsap.from(".journey-kicker, .journey-lead", {
+          y: 24,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".journey-shell",
+            start: "top 82%",
+          },
+        });
+
+        gsap.utils.toArray(".journey-card").forEach((card, index) => {
+          gsap.from(card, {
+            y: 44,
+            opacity: 0,
+            duration: 0.9,
+            delay: index * 0.08,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 88%",
+            },
+          });
+        });
+
+        gsap.from(".journey-quote", {
+          y: 36,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".journey-quote",
+            start: "top 88%",
+          },
+        });
+
+        gsap.from(".journey-links a", {
+          y: 18,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".journey-links",
+            start: "top 90%",
+          },
+        });
+      }
+    </script>
   </body>
 </html>
