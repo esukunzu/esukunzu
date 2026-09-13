@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         main: resolve(root, "index.html"),
         about: resolve(root, "about/index.html"),
+        journey: resolve(root, "journey/index.html"),
         focus: resolve(root, "focus/index.html"),
         contact: resolve(root, "contact/index.html"),
       },

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journey — esukunzu</title>
+    <meta
+      name="description"
+      content="The creative journey of Esukunzu — curiosity, craft, and the work that keeps evolving."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" crossorigin src="../assets/main-i-05z0PQ.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/main-Wg6qmwwQ.css" />
+    <style>
+      :root {
+        --journey-bg: #0b0b0c;
+        --journey-panel: rgba(255, 255, 255, 0.02);
+        --journey-line: rgba(255, 255, 255, 0.12);
+        --journey-text: #f5efe8;
+        --journey-muted: rgba(245, 239, 232, 0.7);
+        --journey-accent: #d1b38a;
+      }
+
+      body[data-page="journey"] {
+        background: var(--journey-bg);
+        color: var(--journey-text);
+      }
+
+      body[data-page="journey"] .nav {
+        border-bottom-color: var(--journey-line);
+      }
+
+      body[data-page="journey"] .nav a,
+      body[data-page="journey"] .footer,
+      body[data-page="journey"] .footer p {
+        color: var(--journey-muted);
+      }
+
+      body[data-page="journey"] .nav__mark,
+      body[data-page="journey"] .nav__links a,
+      body[data-page="journey"] .nav__links a[aria-current="page"] {
+        color: var(--journey-text);
+      }
+
+      .journey-shell {
+        width: min(1080px, 88vw);
+        margin: 0 auto;
+        padding: 8rem 0 4rem;
+      }
+
+      .journey-kicker {
+        margin: 0 0 1.25rem;
+        color: var(--journey-accent);
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 0.72rem;
+      }
+
+      .journey-title {
+        margin: 0;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: clamp(4rem, 9vw, 8rem);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        font-weight: 400;
+      }
+
+      .journey-lead {
+        max-width: 44rem;
+        margin: 2rem 0 4rem;
+        color: var(--journey-muted);
+        font-size: clamp(1.15rem, 2vw, 1.65rem);
+        line-height: 1.6;
+      }
+
+      .journey-grid {
+        display: grid;
+        gap: 2.25rem;
+        margin-top: 2rem;
+      }
+
+      .journey-card {
+        position: relative;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--journey-line);
+      }
+
+      .journey-meta {
+        display: inline-block;
+        margin-bottom: 1rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--journey-accent);
+      }
+
+      .journey-card h2 {
+        margin: 0 0 0.8rem;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: clamp(2.4rem, 4vw, 4rem);
+        line-height: 0.98;
+        font-weight: 400;
+        letter-spacing: -0.05em;
+      }
+
+      .journey-card p {
+        max-width: 44rem;
+        margin: 0;
+        color: var(--journey-muted);
+        font-size: 1.08rem;
+        line-height: 1.8;
+      }
+
+      .journey-quote {
+        margin: 5rem 0 1.5rem;
+        padding: 2rem 0 0;
+        border-top: 1px solid var(--journey-line);
+      }
+
+      .journey-quote blockquote {
+        margin: 0;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+        max-width: 52rem;
+      }
+
+      .journey-quote cite {
+        display: inline-block;
+        margin-top: 1rem;
+        color: var(--journey-muted);
+        font-style: normal;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+      }
+
+      .journey-links {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--journey-line);
+      }
+
+      .journey-links a {
+        display: inline-block;
+        margin-right: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+        color: var(--journey-text);
+      }
+
+      @media (max-width: 700px) {
+        .journey-shell {
+          width: min(92vw, 42rem);
+          padding-top: 6rem;
+        }
+
+        .journey-title {
+          line-height: 0.92;
+        }
+      }
+    </style>
+  </head>
+
+  <body data-page="journey">
+    <div class="cursor" aria-hidden="true"></div>
+    <div class="progress" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="transition" aria-hidden="true"></div>
+
+    <header class="nav">
+      <a class="nav__mark" href="../">esukunzu</a>
+      <nav class="nav__links" aria-label="Pages">
+        <a href="../about/">about</a>
+        <a href="./" aria-current="page">journey</a>
+        <a href="../contact/">contact</a>
+      </nav>
+    </header>
+
+    <main class="journey-shell">
+      <p class="journey-kicker">memoir &amp; evolution</p>
+      <h1 class="journey-title">The Unfiltered<br />Path.</h1>
+
+      <p class="journey-lead">
+        How curiosity turned into craft, and how each small experiment kept becoming
+        a more deliberate way of making.
+      </p>
+
+      <div class="journey-grid">
+        <article class="journey-card">
+          <span class="journey-meta">2020 // the spark</span>
+          <h2>The first click.</h2>
+          <p>
+            I was just curious. I clicked around websites, opened DevTools, and wondered
+            how all of it was built. It felt like a hidden language, and I wanted to learn it.
+          </p>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-meta">2021 // tutorial hell</span>
+          <h2>Watching more than building.</h2>
+          <p>
+            I consumed tutorials, bookmarks, and screenshots of polished interfaces. I learned
+            the terms, but not yet the confidence to make something of my own.
+          </p>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-meta">2023 // first real code</span>
+          <h2>Something messy, but mine.</h2>
+          <p>
+            I finally started building. The first projects were rough, bug-prone, and unfinished,
+            but each one taught me structure, patience, and the joy of making something real.
+          </p>
+        </article>
+
+        <article class="journey-card">
+          <span class="journey-meta">2025 // discovery</span>
+          <h2>Design and rhythm.</h2>
+          <p>
+            I began to see that code can be both functional and emotional. Motion, spacing,
+            typography, and timing became part of the story, not just decoration.
+          </p>
+        </article>
+      </div>
+
+      <div class="journey-quote">
+        <blockquote>
+          “You can’t connect the dots looking forward; you can only connect them looking backwards.”
+        </blockquote>
+        <cite>Steve Jobs</cite>
+      </div>
+
+      <div class="journey-grid">
+        <article class="journey-card">
+          <span class="journey-meta">present // the path</span>
+          <h2>Still learning, still building.</h2>
+          <p>
+            I’m not chasing perfection. I’m chasing clarity. I want the work to feel honest,
+            useful, and alive — whether it’s a landing page, a motion study, or an idea that
+            becomes a small digital experience.
+          </p>
+        </article>
+      </div>
+
+      <div class="journey-links">
+        <a href="../about/">about</a>
+        <a href="../contact/">contact</a>
+        <a href="../">home</a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 esukunzu</p>
+      <p>journey // 2026</p>
+    </footer>
+  </body>
+</html>
