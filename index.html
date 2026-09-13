@@ -14,42 +14,284 @@
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/main-i-05z0PQ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-Wg6qmwwQ.css">
+
+    <style>
+      :root {
+        --bg: #000000;
+        --fg: #ece7dc;
+        --muted: #8a857a;
+        --gold: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        background-color: var(--bg);
+        color: var(--fg);
+        font-family: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        font-weight: 300;
+      }
+
+      /* dot-plus canvas sits behind everything */
+      #dot-bg {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* page chrome and content stay above the canvas */
+      .nav,
+      .hero {
+        position: relative;
+        z-index: 1;
+      }
+
+      .nav {
+        padding: 2rem clamp(1.5rem, 5vw, 4rem);
+      }
+
+      .nav__mark {
+        font-family: inline-flex;
+        font-size: 1.2em;
+        letter-spacing: 0.01em;
+        color: var(--fg);
+        text-decoration: none;
+      }
+
+      .hero {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 clamp(1.5rem, 5vw, 4rem);
+      }
+
+      .hero__copy {
+        max-width: 40rem;
+        /* let the hero text sit above the canvas but still allow the
+           background to react around it */
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        font-size: 0.85rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .hero__title {
+        margin-top: 1rem;
+        font-family: "Instrument Serif", serif;
+        font-weight: 400;
+        font-size: clamp(3rem, 9vw, 6rem);
+        line-height: 1.02;
+        letter-spacing: -0.01em;
+      }
+
+      .hero__title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+
+      .hero__lead {
+        margin-top: 1.5rem;
+        max-width: 32rem;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        line-height: 1.6;
+      }
+
+      .contact-stack {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        /* links need to be clickable even though the copy block is not */
+        pointer-events: auto;
+      }
+
+      .contact-stack a {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.8rem 1.2rem;
+        color: var(--fg);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.25s ease;
+      }
+
+      .contact-stack a:hover {
+        color: var(--gold);
+      }
+
+      .contact-stack a + a::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.9rem;
+        bottom: 0.9rem;
+        width: 1px;
+        background: rgba(236, 231, 220, 0.14);
+      }
+    </style>
   </head>
   <body data-page="home">
-    <div class="cursor" aria-hidden="true"></div>
-    <div class="progress" aria-hidden="true"></div>
-    <div class="grain" aria-hidden="true"></div>
-    <div class="transition" aria-hidden="true"></div>
+    <canvas id="dot-bg" aria-hidden="true"></canvas>
 
     <header class="nav">
       <a class="nav__mark" href="./">esukunzu</a>
-      <nav class="nav__links" aria-label="Pages">
-        <a href="./about/">about</a>
-        <a href="./journey/">journey</a>
-        <a href="./contact/">contact</a>
-      </nav>
     </header>
 
-    <main>
-      <section class="hero" >
-        <div class="hero__copy">
-          <p class="eyebrow reveal">hello</p>
-          <h1 class="hero__title">
-            i'm <em>esukunzu</em>
-          </h1>
-          <p class="hero__lead reveal">
-            an aspiring upcoming multimedia art student and web developer based in the Philippines.
-          </p>
+    <section class="hero">
+      <div class="hero__copy">
+        <p class="eyebrow reveal">hello</p>
+        <h1 class="hero__title">i'm <em>esukunzu</em></h1>
+        <p class="hero__lead reveal">
+          an aspiring upcoming multimedia art student and web developer based in
+          the Philippines.
+        </p>
+
+        <div class="contact-stack reveal">
+          <a href="./about/">about</a>
+          <a href="./journey/">journey</a>
+          <a href="./contact/">contact</a>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <footer class="footer">
-      <p>© 2026 esukunzu</p>
-      <p>personal // 2026</p>
-    </footer>
+    <script>
+      (function () {
+        var GAP = 48; // spacing between glyphs
+        var ARM = 7; // half-length of each plus arm at rest
+        var THICKNESS = 1.6; // arm thickness
+        var RADIUS = 250; // cursor influence radius
 
+        var CREAM = { r: 236, g: 231, b: 220 };
+        var GOLD = { r: 201, g: 162, b: 90 };
+
+        var canvas = document.getElementById("dot-bg");
+        var ctx = canvas.getContext("2d");
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        var dots = [];
+        var width = 0;
+        var height = 0;
+
+        var pointer = { x: -9999, y: -9999 };
+        var smooth = { x: -9999, y: -9999 };
+
+        function build() {
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          canvas.style.width = width + "px";
+          canvas.style.height = height + "px";
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+          dots = [];
+          var cols = Math.ceil(width / GAP) + 1;
+          var rows = Math.ceil(height / GAP) + 1;
+          var offsetX = (width - (cols - 1) * GAP) / 2;
+          var offsetY = (height - (rows - 1) * GAP) / 2;
+
+          for (var r = 0; r < rows; r++) {
+            for (var c = 0; c < cols; c++) {
+              dots.push({
+                x: offsetX + c * GAP,
+                y: offsetY + r * GAP,
+                reveal: 0,
+                gold: 0,
+              });
+            }
+          }
+        }
+
+        function render() {
+          ctx.clearRect(0, 0, width, height);
+
+          smooth.x += (pointer.x - smooth.x) * 0.12;
+          smooth.y += (pointer.y - smooth.y) * 0.12;
+
+          for (var i = 0; i < dots.length; i++) {
+            var d = dots[i];
+            var dx = d.x - smooth.x;
+            var dy = d.y - smooth.y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            var influence = Math.max(0, 1 - dist / RADIUS);
+            var target = influence * influence;
+
+            d.reveal += (target - d.reveal) * 0.16;
+            d.gold += (target - d.gold) * 0.14;
+            if (d.reveal < 0.004) continue;
+
+            var a = d.reveal;
+            var scale = 1 + d.gold * 4.1; // zoom IN toward the cursor
+            var rotation = d.gold * (Math.PI / 3); // rotate up to 45 degrees
+            var arm = ARM * scale;
+            var half = THICKNESS / 2;
+
+            var rr = Math.round(CREAM.r + (GOLD.r - CREAM.r) * d.gold);
+            var gg = Math.round(CREAM.g + (GOLD.g - CREAM.g) * d.gold);
+            var bb = Math.round(CREAM.b + (GOLD.b - CREAM.b) * d.gold);
+
+            ctx.save();
+            ctx.translate(d.x, d.y);
+            ctx.rotate(rotation);
+            if (d.gold > 0.05) {
+              ctx.shadowColor =
+                "rgba(" + GOLD.r + ", " + GOLD.g + ", " + GOLD.b + ", " + a * d.gold * 0.7 + ")";
+              ctx.shadowBlur = 8 * d.gold;
+            }
+            ctx.fillStyle = "rgba(" + rr + ", " + gg + ", " + bb + ", " + a + ")";
+            ctx.fillRect(-arm, -half, arm * 2, THICKNESS); // horizontal arm
+            ctx.fillRect(-half, -arm, THICKNESS, arm * 2); // vertical arm
+            ctx.restore();
+          }
+
+          requestAnimationFrame(render);
+        }
+
+        window.addEventListener(
+          "pointermove",
+          function (e) {
+            pointer.x = e.clientX;
+            pointer.y = e.clientY;
+          },
+          { passive: true }
+        );
+
+        window.addEventListener("pointerleave", function () {
+          pointer.x = -9999;
+          pointer.y = -9999;
+        });
+
+        var resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(build, 150);
+        });
+
+        build();
+        requestAnimationFrame(render);
+      })();
+    </script>
   </body>
 </html>
