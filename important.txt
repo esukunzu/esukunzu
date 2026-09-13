@@ -1,0 +1,1 @@
+for changes run: .\deploy.ps1
